@@ -1,25 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
+import { GlobalStyles } from './styles/GlobalStyles';
+import './styles/enhanced.css';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Publications from './components/Publications';
+import Certifications from './components/Certifications';
+import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import LoadingScreen from './components/LoadingScreen';
+import { useDynamicUnderline } from './hooks/useDynamicUnderline';
+import { useSmoothSectionTransitions } from './hooks/useSmoothSectionTransitions';
 
 function App() {
+  useDynamicUnderline();
+  useSmoothSectionTransitions();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <LoadingScreen />
+      <div className="App">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Publications />
+          <Certifications />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 

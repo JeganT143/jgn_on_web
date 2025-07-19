@@ -1,13 +1,613 @@
+/* Import modern fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* CSS Custom Properties for smooth transitions */
+:root {
+  --primary-gradient: linear-gradient(135deg, #00d4ff 0%, #00ff88 50%, #8b45ff 100%);
+  --secondary-gradient: linear-gradient(45deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 255, 136, 0.1) 50%, rgba(139, 69, 255, 0.1) 100%);
+  --shadow-color: rgba(0, 212, 255, 0.3);
+  --text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --smooth-transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --current-section-color: 0, 212, 255;
+  --grid-opacity: 0.15;
+  --grid-glow: 0.25;
+}
+
+/* Reset and base styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(13, 13, 13, 0.8);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient);
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #00e4ff 0%, #00ff98 50%, #9b55ff 100%);
+  box-shadow: 0 0 10px var(--shadow-color);
+}
+
+/* Enhanced selection styling */
+::selection {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 255, 136, 0.3) 100%);
+  color: #ffffff;
+  text-shadow: var(--text-shadow);
+}
+
+::-moz-selection {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 255, 136, 0.3) 100%);
+  color: #ffffff;
+  text-shadow: var(--text-shadow);
+}
+
+/* Enhanced focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 2px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 20px var(--shadow-color);
+  transition: var(--transition);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced body styles with default cursor */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+  color: #ffffff;
+  cursor: default;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Professional typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Professional button and link interactions */
+a, button {
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+a:hover, button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+a:active, button:active {
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
+
+/* Enhanced glass morphism effect */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced interactive elements */
+[role="button"], .interactive {
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+[role="button"]:hover, .interactive:hover {
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 
+    0 12px 30px var(--shadow-color),
+    0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+[role="button"]::before, .interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+[role="button"]:hover::before, .interactive:hover::before {
+  left: 100%;
+}
+
+/* Smooth page load animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(10px) rotate(240deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes subtleGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+  }
+}
+
+@keyframes gridGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
+    filter: brightness(1.4) saturate(1.5);
+  }
+}
+
+@keyframes smoothColorTransition {
+  0% { filter: hue-rotate(0deg) brightness(1); }
+  100% { filter: hue-rotate(360deg) brightness(1.1); }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fade-in-delay {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+/* Professional grid system with smooth transitions */
+section {
+  position: relative;
+  overflow: hidden;
+  transition: var(--smooth-transition);
+}
+
+/* Enhanced grid background with dynamic colors */
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(var(--current-section-color), var(--grid-glow)) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(var(--current-section-color), calc(var(--grid-glow) * 0.7)) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--current-section-color), var(--grid-opacity)) 1px, transparent 1px),
+    linear-gradient(rgba(var(--current-section-color), var(--grid-opacity)) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px, 40px 40px, 40px 40px;
+  animation: gridGlow 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  transition: var(--smooth-transition);
+  opacity: 0.8;
+}
+
+/* Section-specific grid enhancements */
+section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at top left, rgba(var(--current-section-color), 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(var(--current-section-color), 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  transition: var(--smooth-transition);
+  opacity: 0;
+}
+
+/* Hero Section - Cyan Theme */
+section#home {
+  --current-section-color: 0, 212, 255;
+}
+
+section#home::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(0, 212, 255, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px);
+  box-shadow: inset 0 0 50px rgba(0, 212, 255, 0.08);
+}
+
+/* About Section - Green Theme */
+section#about {
+  --current-section-color: 0, 255, 136;
+}
+
+section#about::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 255, 136, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(0, 255, 136, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 136, 0.15) 1px, transparent 1px);
+  animation-delay: 1s;
+  box-shadow: inset 0 0 50px rgba(0, 255, 136, 0.08);
+}
+
+/* Skills Section - Purple Theme */
+section#skills {
+  --current-section-color: 139, 69, 255;
+}
+
+section#skills::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(139, 69, 255, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(139, 69, 255, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(139, 69, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(139, 69, 255, 0.15) 1px, transparent 1px);
+  animation-delay: 2s;
+  box-shadow: inset 0 0 50px rgba(139, 69, 255, 0.08);
+}
+
+/* Projects Section - Orange Theme */
+section#projects {
+  --current-section-color: 255, 122, 0;
+}
+
+section#projects::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 122, 0, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(255, 122, 0, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 122, 0, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(255, 122, 0, 0.15) 1px, transparent 1px);
+  animation-delay: 3s;
+  box-shadow: inset 0 0 50px rgba(255, 122, 0, 0.08);
+}
+
+/* Publications Section - Teal Theme */
+section#publications {
+  --current-section-color: 0, 188, 212;
+}
+
+section#publications::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 188, 212, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(0, 188, 212, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 188, 212, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(0, 188, 212, 0.15) 1px, transparent 1px);
+  animation-delay: 4s;
+  box-shadow: inset 0 0 50px rgba(0, 188, 212, 0.08);
+}
+
+/* Certifications Section - Pink Theme */
+section#certifications {
+  --current-section-color: 233, 30, 99;
+}
+
+section#certifications::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(233, 30, 99, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(233, 30, 99, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(233, 30, 99, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(233, 30, 99, 0.15) 1px, transparent 1px);
+  animation-delay: 5s;
+  box-shadow: inset 0 0 50px rgba(233, 30, 99, 0.08);
+}
+
+/* Testimonials Section - Indigo Theme */
+section#testimonials {
+  --current-section-color: 63, 81, 181;
+}
+
+section#testimonials::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(63, 81, 181, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(63, 81, 181, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(63, 81, 181, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(63, 81, 181, 0.15) 1px, transparent 1px);
+  animation-delay: 6s;
+  box-shadow: inset 0 0 50px rgba(63, 81, 181, 0.08);
+}
+
+/* Contact Section - Red Theme */
+section#contact {
+  --current-section-color: 244, 67, 54;
+}
+
+section#contact::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(244, 67, 54, 0.35) 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(244, 67, 54, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(244, 67, 54, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(244, 67, 54, 0.15) 1px, transparent 1px);
+  animation-delay: 7s;
+  box-shadow: inset 0 0 50px rgba(244, 67, 54, 0.08);
+}
+
+/* Smooth section transitions on scroll */
+section.section-active {
+  transform: scale(1.005);
+}
+
+section.section-active::before {
+  opacity: 1;
+  filter: brightness(1.6) saturate(1.8) drop-shadow(0 0 20px rgba(var(--current-section-color), 0.3));
+}
+
+section.section-active::after {
+  opacity: 1;
+}
+
+section.section-inactive::before {
+  opacity: 0.6;
+  filter: brightness(0.8) saturate(0.7);
+}
+
+section.section-inactive::after {
+  opacity: 0;
+}
+
+/* Intersection-based smooth transitions */
+section.section-entering {
+  animation: sectionEnter 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+section.section-leaving {
+  animation: sectionLeave 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes sectionEnter {
+  from {
+    opacity: 0.6;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.005);
+  }
+}
+
+@keyframes sectionLeave {
+  from {
+    opacity: 1;
+    transform: scale(1.005);
+  }
+  to {
+    opacity: 0.6;
+    transform: scale(0.99);
+  }
+}
+
+section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove default margin on typography elements */
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+/* Remove default button styles */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+/* Remove default link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Interactive elements cursor */
+button:hover, a:hover, [role="button"]:hover {
+  cursor: pointer;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, #0a0a0a, #1a1a2e);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff, #00ff88);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ff88, #00d4ff);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+}
+
+/* Selection color */
+::selection {
+  background: linear-gradient(45deg, #00d4ff, #00ff88);
+  color: #0A0A0A;
+}
+
+/* Focus outline */
+*:focus {
+  outline: 2px solid #00d4ff;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Smooth scrolling enhancements */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Typography improvements */
+h1, h2, h3 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Global glow effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(139, 69, 255, 0.3);
+}
+
+/* Enhanced animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 255, 136, 0.3); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

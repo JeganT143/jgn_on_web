@@ -1,46 +1,103 @@
-# Getting Started with Create React App
+# John Doe - AI/ML Engineer Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website for AI/ML professionals built with React, TypeScript, and Styled Components.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### Modern Design
+- **Dark Theme**: Professional dark mode with blue/purple accent colors
+- **Responsive Design**: Optimized for mobile, tablet, and desktop
+- **Smooth Animations**: Framer Motion powered animations and transitions
+- **Modern Typography**: Inter font for clean, professional look
 
-### `npm start`
+### Sections Included
+- **Hero Section**: Professional introduction with animated typing effect
+- **About Me**: Personal story and career highlights
+- **Skills & Technologies**: Interactive skill bars with categorized tech stacks
+- **Featured Projects**: Filterable project showcase with GitHub/demo links
+- **Research & Publications**: Academic contributions and citations
+- **Certifications**: Industry certifications and achievements
+- **Testimonials**: Client and colleague recommendations
+- **Contact Form**: Functional contact form with validation
+- **Footer**: Quick navigation and social links
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Frontend**: React 19, TypeScript
+- **Styling**: Styled Components
+- **Animations**: Framer Motion
+- **Icons**: React Icons
+- **Build Tool**: Create React App
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-### `npm run build`
+### Installation
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎨 Customization
 
-### `npm run eject`
+### Personal Information
+Edit `src/data/portfolioData.ts` to customize:
+- Personal details (name, title, contact info)
+- About me content and highlights
+- Skills and technology proficiencies
+- Project details and links
+- Publications and certifications
+- Testimonials and social links
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Styling
+Modify `src/styles/theme.ts` to customize:
+- Color palette and accent colors
+- Typography scale and fonts
+- Spacing and layout values
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+src/
+├── components/          # UI components
+│   ├── About.tsx       # About section
+│   ├── Certifications.tsx  # Certifications display
+│   ├── Contact.tsx     # Contact form
+│   ├── Footer.tsx      # Footer component
+│   ├── Hero.tsx        # Landing section
+│   ├── Navbar.tsx      # Navigation component
+│   ├── Projects.tsx    # Projects showcase
+│   ├── Publications.tsx # Research publications
+│   ├── Skills.tsx      # Skills and technologies
+│   ├── StyledComponents.ts # Shared styled components
+│   └── Testimonials.tsx # Client testimonials
+├── data/               # Portfolio content
+│   └── portfolioData.ts # All portfolio content
+├── styles/             # Theme and global styles
+│   ├── GlobalStyles.ts # Global CSS styles
+│   └── theme.ts        # Design system theme
+└── App.tsx            # Main application
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🎯 Key Features
 
-## Learn More
+- **SEO Optimized**: Proper meta tags and semantic HTML
+- **Accessibility**: WCAG compliant with keyboard navigation
+- **Performance**: Optimized for fast loading and smooth interactions
+- **TypeScript**: Full type safety throughout the application
+- **Responsive**: Mobile-first design principles
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Built with ❤️ for AI/ML professionals looking to showcase their work in style.**
