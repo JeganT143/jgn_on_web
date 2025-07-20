@@ -14,6 +14,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import NeuralNetworkBackground from './components/AnimatedBackground';
 import { useDynamicUnderline } from './hooks/useDynamicUnderline';
 import { useSmoothSectionTransitions } from './hooks/useSmoothSectionTransitions';
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
+      <NeuralNetworkBackground />
       <LoadingScreen />
       <div className="App">
         <Navbar />

@@ -4,15 +4,7 @@ import { motion } from 'framer-motion';
 import { FaDownload, FaEye, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 import { Container, Button, IconWrapper } from './StyledComponents';
-
-const float = keyframes`
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
-`;
+import HeroNeuralNetwork from './HeroNeuralNetwork';
 
 const digitalPulse = keyframes`
   0%, 100% {
@@ -25,14 +17,34 @@ const digitalPulse = keyframes`
   }
 `;
 
+const glowPulse = keyframes`
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(0, 212, 255, 0.2),
+      0 0 40px rgba(0, 212, 255, 0.1),
+      0 0 60px rgba(0, 212, 255, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(0, 212, 255, 0.4),
+      0 0 60px rgba(0, 212, 255, 0.2),
+      0 0 100px rgba(0, 212, 255, 0.1);
+  }
+`;
+
+const textShimmer = keyframes`
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+`;
+
 const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: 
-    linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%),
-    radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
   position: relative;
   overflow: hidden;
 `;
@@ -43,7 +55,7 @@ const HeroContainer = styled(Container)`
   align-items: center;
   gap: ${props => props.theme.spacing['3xl']};
   position: relative;
-  z-index: 1;
+  z-index: 2;
   min-height: 100vh;
   padding: ${props => props.theme.spacing.xl} 0;
   
@@ -90,7 +102,7 @@ const ProfileImage = styled(motion.div)`
   background-size: 200% 200%;
   padding: 6px;
   position: relative;
-  animation: gradient-shift 8s ease infinite;
+  animation: gradient-shift 15s ease infinite;
   
   &::before {
     content: '';
@@ -104,7 +116,7 @@ const ProfileImage = styled(motion.div)`
     filter: blur(20px);
     opacity: 0.8;
     z-index: -1;
-    animation: gradient-shift 10s ease infinite reverse, ${digitalPulse} 6s ease-in-out infinite;
+    animation: gradient-shift 18s ease infinite reverse, ${digitalPulse} 6s ease-in-out infinite;
   }
   
   &::after {
@@ -115,6 +127,7 @@ const ProfileImage = styled(motion.div)`
     background: linear-gradient(135deg, #00d4ff, #00ff88);
     z-index: -1;
     opacity: 0.8;
+    animation: ${glowPulse} 5s ease-in-out infinite;
   }
   
   img {
@@ -146,14 +159,14 @@ const Name = styled(motion.h1)`
   font-family: 'Orbitron', monospace;
   font-size: ${props => props.theme.fontSizes['6xl']};
   font-weight: 800;
-  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 50%, #8b45ff 100%);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 25%, #8b45ff 50%, #00d4ff 75%, #00ff88 100%);
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0;
   line-height: 1.1;
-  animation: gradient-shift 4s ease infinite;
+  animation: gradient-shift 12s ease infinite, ${textShimmer} 8s ease-in-out infinite;
   position: relative;
   word-break: break-word;
   text-align: left;
@@ -169,6 +182,7 @@ const Name = styled(motion.h1)`
     filter: blur(20px);
     opacity: 0.3;
     z-index: -1;
+    animation: ${glowPulse} 4s ease-in-out infinite;
   }
   
   @media (max-width: ${props => props.theme.breakpoints.desktop}) {
@@ -285,11 +299,12 @@ const StatCard = styled(motion.div)`
   
   &:hover {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 255, 136, 0.15) 100%);
-    transform: translateY(-4px) scale(1.02);
+    transform: translateY(-8px) scale(1.05);
     box-shadow: 
-      0 0 30px rgba(0, 212, 255, 0.4),
-      0 8px 25px rgba(0, 0, 0, 0.2);
-    border-color: rgba(0, 212, 255, 0.5);
+      0 0 40px rgba(0, 212, 255, 0.5),
+      0 12px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 212, 255, 0.6);
+    animation-play-state: paused;
     
     &::before {
       left: 100%;
@@ -308,7 +323,7 @@ const StatNumber = styled.div`
   background-clip: text;
   margin-bottom: 0.5rem;
   position: relative;
-  animation: gradient-shift 3s ease-in-out infinite;
+  animation: gradient-shift 8s ease-in-out infinite;
   
   &::after {
     content: '';
@@ -405,23 +420,35 @@ const Hero: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        when: "beforeChildren" as const
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.8
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      scale: 1,
+      transition: { 
+        duration: 0.8,
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 10
+      }
     }
   };
 
   return (
     <HeroSection id="home">
+      <HeroNeuralNetwork />
       <HeroContainer>
         <HeroContent>
           <motion.div
@@ -539,10 +566,19 @@ const Hero: React.FC = () => {
         
         <HeroImageContainer>
           <ProfileImage
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            whileHover={{ scale: 1.05 }}
+            initial={{ scale: 0.8, opacity: 0, rotateY: -30 }}
+            animate={{ scale: 1, opacity: 1, rotateY: 0 }}
+            transition={{ 
+              duration: 1.2, 
+              delay: 0.8,
+              type: "spring" as const,
+              stiffness: 100
+            }}
+            whileHover={{ 
+              scale: 1.08,
+              rotateY: 5,
+              transition: { duration: 0.3 }
+            }}
           >
             <img src={personalInfo.profileImage} alt={personalInfo.name} />
           </ProfileImage>
