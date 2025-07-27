@@ -7,7 +7,12 @@ export const Container = styled.div`
   padding: 0 ${props => props.theme.spacing.md};
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    padding: 0 ${props => props.theme.spacing.sm};
+    padding: 0 ${props => props.theme.spacing.md};
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: 0 ${props => props.theme.spacing.lg}; /* Increased to lg for better edge spacing */
+    max-width: 100%;
   }
 `;
 
@@ -16,6 +21,10 @@ export const Section = styled.section`
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     padding: ${props => props.theme.spacing.xl} 0;
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: ${props => props.theme.spacing.lg} 0;
   }
 `;
 
@@ -67,10 +76,30 @@ export const SectionTitle = styled(motion.h2)`
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes['3xl']};
+    margin-bottom: ${props => props.theme.spacing.xl};
+    
+    &::before {
+      filter: blur(10px);
+    }
+    
+    &.in-view::after {
+      width: 80px;
+    }
   }
   
-  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fontSizes['3xl']};
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: ${props => props.theme.fontSizes['2xl']};
+    margin-bottom: ${props => props.theme.spacing.lg};
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    
+    &::before {
+      filter: blur(8px);
+    }
+    
+    &.in-view::after {
+      width: 60px;
+      height: 3px;
+    }
   }
 `;
 
@@ -83,6 +112,19 @@ export const SectionSubtitle = styled(motion.p)`
   margin: 0 auto ${props => props.theme.spacing.xl};
   line-height: 1.7;
   font-weight: 400;
+  
+  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.base};
+    margin-bottom: ${props => props.theme.spacing.lg};
+    max-width: 600px;
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: ${props => props.theme.fontSizes.sm};
+    margin-bottom: ${props => props.theme.spacing.md};
+    max-width: 100%;
+    line-height: 1.6;
+  }
 `;
 
 export const Button = styled(motion.button)<{ variant?: 'primary' | 'secondary' | 'outline' }>`
@@ -100,6 +142,16 @@ export const Button = styled(motion.button)<{ variant?: 'primary' | 'secondary' 
   gap: ${props => props.theme.spacing.xs};
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
+    font-size: ${props => props.theme.fontSizes.sm};
+    gap: ${props => props.theme.spacing.xs};
+    width: 100%; /* Full width within container */
+    max-width: 300px; /* Reasonable max width */
+    margin: 0 auto; /* Center the button */
+    justify-content: center;
+  }
   
   &::before {
     content: '';

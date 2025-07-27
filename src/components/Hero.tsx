@@ -58,6 +58,7 @@ const HeroContainer = styled(Container)`
   z-index: 2;
   min-height: 100vh;
   padding: ${props => props.theme.spacing.xl} 0;
+  padding-top: calc(80px + ${props => props.theme.spacing.xl}); /* Account for navbar height */
   
   @media (max-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: 1fr;
@@ -65,11 +66,20 @@ const HeroContainer = styled(Container)`
     gap: ${props => props.theme.spacing.xl};
     min-height: auto;
     padding: ${props => props.theme.spacing['2xl']} 0;
+    padding-top: calc(80px + ${props => props.theme.spacing['2xl']});
   }
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     gap: ${props => props.theme.spacing.lg};
     padding: ${props => props.theme.spacing.xl} 0;
+    padding-top: calc(70px + ${props => props.theme.spacing.xl});
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    gap: ${props => props.theme.spacing.md};
+    padding: ${props => props.theme.spacing.lg} 0;
+    min-height: 100vh;
+    padding-top: calc(60px + ${props => props.theme.spacing.lg}); /* Account for smaller navbar */
   }
 `;
 
@@ -143,6 +153,21 @@ const ProfileImage = styled(motion.div)`
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     width: 250px;
     height: 250px;
+    
+    &::before {
+      inset: -20px;
+      filter: blur(15px);
+    }
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    width: 200px;
+    height: 200px;
+    
+    &::before {
+      inset: -15px;
+      filter: blur(10px);
+    }
   }
 `;
 
@@ -153,6 +178,11 @@ const Greeting = styled(motion.p)`
   font-weight: 500;
   margin: 0;
   text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: ${props => props.theme.fontSizes.base};
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.4);
+  }
 `;
 
 const Name = styled(motion.h1)`
@@ -195,7 +225,14 @@ const Name = styled(motion.h1)`
   }
   
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: ${props => props.theme.fontSizes['3xl']};
+    font-size: ${props => props.theme.fontSizes['3xl']}; /* Increased from 2xl to 3xl for better prominence */
+    line-height: 1.3;
+    margin-bottom: ${props => props.theme.spacing.sm};
+    
+    &::after {
+      filter: blur(10px);
+      opacity: 0.4; /* Slightly more glow for better visibility */
+    }
   }
 `;
 
@@ -216,10 +253,15 @@ const Title = styled(motion.h2)`
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 1.5;
+    margin-bottom: ${props => props.theme.spacing.md};
   }
   
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: ${props => props.theme.fontSizes.lg};
+    font-size: ${props => props.theme.fontSizes.lg}; /* Increased from base to lg for better readability */
+    margin-bottom: ${props => props.theme.spacing.sm};
+    letter-spacing: 0.3px;
+    color: #f0f0f0; /* Brighter color for better contrast */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Add subtle shadow for readability */
   }
 `;
 
@@ -248,8 +290,13 @@ const Tagline = styled(motion.p)`
   }
   
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: ${props => props.theme.fontSizes.base};
-    padding: 0.5rem 0.75rem;
+    font-size: ${props => props.theme.fontSizes.base}; /* Increased from sm to base */
+    padding: 0.75rem 1rem; /* Increased padding for better touch targets */
+    margin: ${props => props.theme.spacing.sm} 0;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+    background: rgba(0, 212, 255, 0.15); /* Slightly more opaque for better readability */
+    color: #ffffff; /* Ensure bright text */
   }
 `;
 
@@ -258,8 +305,16 @@ const ButtonGroup = styled(motion.div)`
   gap: ${props => props.theme.spacing.md};
   margin-top: ${props => props.theme.spacing.lg};
   
+  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
+    flex-direction: column;
+    gap: ${props => props.theme.spacing.sm};
+  }
+  
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     flex-direction: column;
+    gap: ${props => props.theme.spacing.sm};
+    margin-top: ${props => props.theme.spacing.md};
+    width: 100%;
   }
 `;
 
@@ -272,6 +327,14 @@ const StatsContainer = styled(motion.div)`
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
   }
 `;
 
@@ -310,6 +373,15 @@ const StatCard = styled(motion.div)`
       left: 100%;
     }
   }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+    
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+  }
 `;
 
 const StatNumber = styled.div`
@@ -337,6 +409,15 @@ const StatNumber = styled.div`
     opacity: 0.3;
     z-index: -1;
   }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    
+    &::after {
+      filter: blur(6px);
+    }
+  }
 `;
 
 const StatLabel = styled.div`
@@ -347,6 +428,11 @@ const StatLabel = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 500;
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
 `;
 
 const SocialLinks = styled(motion.div)`

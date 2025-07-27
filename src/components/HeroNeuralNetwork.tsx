@@ -54,7 +54,9 @@ const HeroNeuralNetwork: React.FC = () => {
   ], []);
 
   const initializeNodes = useCallback((width: number, height: number) => {
-    const nodeCount = Math.min(25, Math.floor((width * height) / 25000));
+    // Fewer nodes on mobile for better performance
+    const isMobile = width < 768;
+    const nodeCount = Math.min(isMobile ? 15 : 25, Math.floor((width * height) / 25000));
     const nodes: Node[] = [];
     
     for (let i = 0; i < nodeCount; i++) {
@@ -63,7 +65,7 @@ const HeroNeuralNetwork: React.FC = () => {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.2,
         vy: (Math.random() - 0.5) * 0.2,
-        size: 1.2,
+        size: isMobile ? 1.0 : 1.2, // Smaller nodes on mobile
         color: colors[Math.floor(Math.random() * colors.length)],
         opacity: Math.random() * 0.3 + 0.4,
         connections: [],

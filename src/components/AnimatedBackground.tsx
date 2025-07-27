@@ -56,7 +56,11 @@ const NeuralNetworkBackground: React.FC = () => {
   ], []);
 
   const initializeNodes = useCallback((width: number, height: number) => {
-    const nodeCount = Math.min(45, Math.floor((width * height) / 18000));
+    // Adjust node count based on screen size for better performance on mobile
+    const baseNodeCount = Math.floor((width * height) / 18000);
+    const mobileThreshold = 768;
+    const isMobile = width < mobileThreshold;
+    const nodeCount = Math.min(isMobile ? 25 : 45, baseNodeCount);
     const nodes: Node[] = [];
     
     for (let i = 0; i < nodeCount; i++) {
@@ -65,7 +69,7 @@ const NeuralNetworkBackground: React.FC = () => {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.3, // Smooth movement
         vy: (Math.random() - 0.5) * 0.3, // Smooth movement
-        size: 1.5, // Fixed size for simple dots
+        size: isMobile ? 1.2 : 1.5, // Slightly smaller dots on mobile
         color: colors[Math.floor(Math.random() * colors.length)],
         opacity: Math.random() * 0.3 + 0.7, // More consistent visibility
         connections: [],
@@ -79,6 +83,9 @@ const NeuralNetworkBackground: React.FC = () => {
 
   const createConnections = useCallback((nodes: Node[], maxDistance: number) => {
     const connections: Connection[] = [];
+    // Reduce connections on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    const connectionProbabilityMultiplier = isMobile ? 0.7 : 1;
     
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
@@ -87,7 +94,8 @@ const NeuralNetworkBackground: React.FC = () => {
         const distance = Math.sqrt(dx * dx + dy * dy);
         
         // Dynamic connection probability based on distance
-        const connectionProbability = distance < maxDistance * 0.6 ? 0.4 : 0.15;
+        const baseProbability = distance < maxDistance * 0.6 ? 0.4 : 0.15;
+        const connectionProbability = baseProbability * connectionProbabilityMultiplier;
         if (distance < maxDistance && Math.random() < connectionProbability) {
           const strength = 1 - (distance / maxDistance);
           connections.push({
@@ -95,7 +103,7 @@ const NeuralNetworkBackground: React.FC = () => {
             to: j,
             strength,
             opacity: strength * 0.7, // More visible connections
-            animated: Math.random() < 0.25, // More animated pulses for dynamism
+            animated: Math.random() < (isMobile ? 0.15 : 0.25), // Fewer animations on mobile
             pulsePosition: Math.random(), // Random starting positions
           });
           

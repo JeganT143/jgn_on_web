@@ -29,6 +29,13 @@ const NavbarContainer = styled(motion.nav)<{ isScrolled: boolean }>`
     opacity: ${props => props.isScrolled ? 1 : 0};
     transition: opacity 0.3s ease;
   }
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: ${props => props.theme.spacing.xs} 0;
+    background: ${props => props.theme.colors.background}98;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid ${props => props.theme.colors.border};
+  }
 `;
 
 const NavContainer = styled(Container)`
@@ -36,6 +43,11 @@ const NavContainer = styled(Container)`
   align-items: center;
   justify-content: space-between;
   min-height: 60px;
+  
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    min-height: 50px;
+    padding: 0 ${props => props.theme.spacing.sm};
+  }
 `;
 
 const Logo = styled(motion.div)`
@@ -64,7 +76,9 @@ const Logo = styled(motion.div)`
   }
   
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: ${props => props.theme.fontSizes.lg};
+    font-size: ${props => props.theme.fontSizes.base};
+    margin-right: ${props => props.theme.spacing.sm};
+    letter-spacing: 0.5px;
   }
 `;
 

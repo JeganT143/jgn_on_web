@@ -29,6 +29,42 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  /* Prevent zoom on mobile inputs */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Mobile viewport handling */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  /* Improve touch scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent pull-to-refresh */
+  overscroll-behavior-y: contain;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Disable text selection on mobile for better UX */
+  h1, h2, h3, h4, h5, h6 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 }
 
 /* Modern scrollbar styling */
