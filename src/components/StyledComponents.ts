@@ -3,16 +3,20 @@ import { motion } from 'framer-motion';
 
 export const Container = styled.div`
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 ${props => props.theme.spacing.md};
+  box-sizing: border-box;
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     padding: 0 ${props => props.theme.spacing.md};
+    max-width: 100%;
   }
   
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    padding: 0 ${props => props.theme.spacing.lg}; /* Increased to lg for better edge spacing */
+    padding: 0 ${props => props.theme.spacing.sm}; /* Reduced to sm for mobile */
     max-width: 100%;
+    width: 100%;
   }
 `;
 

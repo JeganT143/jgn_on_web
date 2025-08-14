@@ -11,6 +11,8 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {
@@ -23,6 +25,12 @@ export const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.colors.text};
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    position: relative;
   }
 
   code {

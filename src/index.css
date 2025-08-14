@@ -32,6 +32,8 @@ html {
   /* Prevent zoom on mobile inputs */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Mobile viewport handling */
@@ -44,11 +46,16 @@ html {
 body {
   overflow-x: hidden;
   width: 100%;
+  min-width: 100%;
+  max-width: 100vw;
   position: relative;
+  margin: 0;
+  padding: 0;
   /* Improve touch scrolling on mobile */
   -webkit-overflow-scrolling: touch;
   /* Prevent pull-to-refresh */
   overscroll-behavior-y: contain;
+
 }
 
 /* Improve touch targets on mobile */
@@ -118,6 +125,7 @@ html {
 /* Enhanced body styles with default cursor */
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -128,6 +136,10 @@ body {
   cursor: default;
   overflow-x: hidden;
   line-height: 1.6;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* Smooth scrolling behavior */
@@ -437,4 +449,28 @@ code, pre {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* Layout fix for alignment issues */
+#root {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure all sections stay within viewport */
+* {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Fix for any horizontal scrolling issues */
+main {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
